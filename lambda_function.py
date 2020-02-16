@@ -4,7 +4,9 @@ import boto3
 def lambda_handler(event, context):
     
     dynamo = boto3.resource('dynamodb')
-    table = dynamo.Table('device_configuration')
+    table = dynamo.Table(
+        os.environ['device_configuration_table']
+    )
 
     for record in event.get('Records'):
         
